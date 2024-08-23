@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+html, body {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<h1>3의 배수 찾기</h1>
+<script type="text/javascript">
+	var num = parseInt(prompt("몇 까지 3의 배수를 찾을까요?"));
+	
+	for(var i=1; i<=num; i++){
+		if(i%3 == 0){
+			document.write(i + ", ");
+		}
+	}
+</script>
+</body>
+</html>

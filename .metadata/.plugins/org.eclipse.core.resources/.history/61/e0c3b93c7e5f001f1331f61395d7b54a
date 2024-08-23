@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body onload="startTime()"> <!-- body태그를 다 읽으면 startTime()을 부르겠다. -->
+	<h1 id="timer">현재시간을 보여줍니다</h1>
+
+<script type="text/javascript">
+	//let now = new Date(); //내장객체
+	//document.write(now + "<br/>");
+	//document.write(now.toLocaleString());
+	
+	function startTime(){ //구현
+		/* setInterval(() => {
+			let today = new Date();
+			document.write(today.toLocaleString() + "<br>");
+		}, 1000);
+	 	*/
+	 	
+		setInterval(printTime(), 1000);
+	}
+	
+	
+	
+	function printTime(){
+		let days = ["일", "월", "화", "수", "목", "금", "토"];
+		let today = new Date();
+		
+		let yy = todat.getFullYear(); //년
+		let mm = today.getMonth() + 1; //월, 1월=>0, 2월=>1
+		let dd = today.getDate(); //일
+		var i = today.getDay(); //요일(0~6)
+		var day = days[i];
+	}
+</script>
+</body>
+</html>

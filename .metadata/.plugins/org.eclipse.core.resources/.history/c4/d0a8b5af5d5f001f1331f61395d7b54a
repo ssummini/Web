@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body {
+	text-align: center;
+}
+
+.number {
+	font-weight: bold;
+}
+
+.result {
+	color: red;
+	font-weight: bold;
+}
+
+</style>
+</head>
+<body>
+<h1>3의 배수 찾기</h1>
+<script type="text/javascript">
+	let num = parseInt(prompt("몇 까지 3의 배수를 찾을까요?"));
+	let count = 0;
+	let sum = 0;
+	for(let i=1; i<=num; i++){
+		if(i%3 == 0){
+			count++;
+			sum = sum + i;
+			document.write("<span class='number'>" + i + ", </span>");
+		}
+	}
+		
+	document.write("<br><br>");
+	document.write("<span class='result'>" + num + "까지의 3의 배수의 개수 : " + count + "</span><br><br>");
+	document.write("<span class='result'>" + num + "까지의 3의 배수의 합 : " + sum + "</span>");
+</script>
+</body>
+</html>

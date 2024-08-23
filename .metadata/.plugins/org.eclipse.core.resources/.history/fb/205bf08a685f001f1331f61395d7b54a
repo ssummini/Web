@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	//배열
+	//let myArray1 = ["홍길동", "자바스크립트", "학생"];
+	let myArray1 = new Array("홍길동", "자바스크립트", "학생") //Array라는 내장객체 사용
+	document.write(myArray1[0] + "<br>");
+	document.write(myArray1[1] + "<br>");
+	document.write(myArray1[2] + "<br>");
+	document.write("<hr>");
+	
+	myArray1[0] = "HongGilDong";
+	myArray1[1] = "JavaScript";
+	myArray1[2] = "Student";
+	document.write(myArray1[0] + "<br>");
+	document.write(myArray1[1] + "<br>");
+	document.write(myArray1[2] + "<br>");
+	document.write("<hr>");
+</script>
+</body>
+</html>

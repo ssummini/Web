@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hover Example</title>
+<style type="text/css">
+/* td에 마우스를 올리면 카드가 보이도록 설정 */
+td:hover #img {
+    display: inline-block; /* 카드를 보이게 함 */
+}
+
+/* 카드 기본 설정 (보이지 않음) */
+#img {
+    display: none;
+    width: 200px;
+    height: 200px;
+    background-image: url("../image/back.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+}
+
+/* 카드에 마우스를 올렸을 때 앞면 이미지로 변경 */
+#img:hover {
+    background-image: url("../image/spade-7.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+}
+</style>
+</head>
+<body>
+    <h3>:hover 활용</h3>
+    <hr>
+    <table>
+        <tr>
+            <td>마우스를 올리면 카드의 앞면이 보인다.</td>
+            <td><div id="img"></div></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.lotto {
+	display: inline-block;
+    width: 100px;
+    height: 100px;
+	border-radius: 50%;
+	background-color: tomato;
+	position: relative;
+	margin-right: 5px;
+}
+
+.lotto h3 {
+		position: absolute;
+	left: 40px;
+	top: 18px;
+	text-align: center;
+	color: white; /* 글자색 추가 */
+	font-size: 24px; /* 글자 크기 */
+	margin: 0; /* h3 기본 마진 제거 */
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+</style>
+</head>
+<body onload = "start()">
+	<h1>[문제3] 로또</h1>
+	<div class="lotto"><h3></h3></div>
+	<div class="lotto"><h3></h3></div>
+	<div class="lotto"><h3></h3></div>
+	<div class="lotto"><h3></h3></div>
+	<div class="lotto"><h3></h3></div>
+	<div class="lotto"><h3></h3></div>
+<script type="text/javascript">
+	
+	function pickNumber() {
+		let lottoNumbers = [];
+		let number;
+		let isSame;
+
+		for (let i = 0; i < 6; i++) {
+			do {
+				number = parseInt(Math.random() * 45 + 1);
+				isSame = false;
+				for (let j = 0; j < lottoNumbers.length; j++) {
+					if (number == lottoNumbers[j]) {
+						isSame = true;
+						break;
+					}
+				}
+			} while (isSame);
+
+			lottoNumbers.push(number);
+		}
+		console.log(lottoNumbers);
+		return lottoNumbers;
+	}
+
+	function start() {
+		let lottoNumbers2 = pickNumber();
+		let lottoNumbers3 = document.getElementsByClassName("lotto");
+		
+		for (let i = 0; i < lottoNumbers2.length; i++) {
+			lottoNumbers3[i].innerText = lottoNumbers2[i];
+		}
+	}
+</script>
+</body>
+</html>

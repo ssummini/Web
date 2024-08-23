@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	//concat - 배열 합치는 역할, 새로운 배열 생성, 원본 변경X
+	let arr1 = [10, 20, 30];
+	let arr2 = ["사과", "딸기", "바나나"];
+	let arr3 = arr1.concat(); //복사본
+	let arr4 = arr1.concat(arr2);
+	
+	document.write("arr1 = " + arr1 + "<br>"); //arr1 = 10,20,30
+	document.write(`arr3 = ${arr3}<br>`); //arr3 = 10,20,30
+	document.write(`arr4 = ${arr4}<br>`); //arr4 = 10,20,30,사과,딸기,바나나
+	document.write("<hr/>");
+	
+	//배열 요소 추가
+	//push - 뒤에 추가
+	//unshift - 앞에 추가
+	arr1.push(40);
+	arr1.push(50);
+	document.write(`arr1 = ${arr1}<br>`);
+	
+	arr2.push("복숭아", "수박");
+	document.write(`arr2 = ${arr2}<br>`);
+	
+	arr2.unshift("망고");
+	document.write(`arr2 = ${arr2}<br>`);
+	document.write("<hr/>");
+	
+	//배열 요소 삭제
+	//pop - 뒤에 삭제
+	//shift - 앞에 삭제
+	arr1.pop();
+	document.write(`arr1 = ${arr1}<br>`);
+</script>
+</body>
+</html>

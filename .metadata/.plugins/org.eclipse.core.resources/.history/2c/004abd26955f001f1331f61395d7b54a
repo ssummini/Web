@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.lotto {
+	display: inline-block;
+    width: 100px;
+    height: 100px;
+	border-radius: 50%;
+	background-color: tomato;
+	position: relative;
+	margin-right: 5px;
+}
+
+h3 {
+	position: absolute;
+	left: 40px;
+	top: 18px;
+	text-align: center;
+}
+
+</style>
+</head>
+<body>
+	<h1>[문제3] 로또</h1>
+	<div class="lotto"><h3>${number}</h3></div>
+
+<script type="text/javascript">
+	let lottoNumbers = [];
+	
+	for(let i=0; i<6; i++){
+		let number;
+		let isSame;
+		do{
+			//(최댓값 - 최솟값 + 1) + 최솟값
+			number= parseInt(Math.random()*45 + 1);
+			isSame = false;
+			for(let j=0; j<lottoNumbers.length; j++){
+				if(number == lottoNumbers[j]){
+					isSame = true;
+					break;
+				}
+			}
+		}while(isSame);
+		
+		lottoNumbers.push(number);
+		document.write(``);
+		
+	}
+	
+</script>
+</body>
+</html>

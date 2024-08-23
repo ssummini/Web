@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	var num = parseInt(prompt("몇 까지 3의 배수를 찾을까요?"));
+</script>
+</body>
+</html>
