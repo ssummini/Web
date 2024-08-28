@@ -152,7 +152,7 @@ $(function () {
 		date_span.html(' / ' + today + ' ');
 		
 		//<input type="button" value="삭제하기" class="delete_btn">
-		var del_input = $('<input/>');
+		var del_input = $('<input />');
 		del_input.attr({
 			'type': 'button',
 			'value': '삭제하기'
@@ -183,7 +183,7 @@ $(function () {
 	//$(조상).on('이벤트', '후손')
 	$(document).on('click', '.delete_btn', function(){
 		if(confirm('선택하신 항목을 삭제하시겠습니까?')){
-			$(this).parents('.comment_item').remove();
+			$(this).remove();
 		}
 	});
 });
