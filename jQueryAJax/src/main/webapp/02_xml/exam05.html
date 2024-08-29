@@ -87,8 +87,8 @@ h1 {
 		<h1>jQuery Comment</h1>
 		<div id="comment_write">
 			<form id="comment_form">
-				<input type="text" name="num" id="num" value=""/>
-				<input type="text" name="datetime" id="datetime" value=""/>
+				<input type="text" name="num" id="num" value="" readonly/>
+				<input type="text" name="datetime" id="datetime" value="" readonly/>
 		
 				<div>
 					<label for="writer">작성자</label>
@@ -244,7 +244,8 @@ $(function () {
 	//$(조상).on('이벤트', '후손')
 	$(document).on('click', '.delete_btn', function(){
 		if(confirm('선택하신 항목을 삭제하시겠습니까?')){
-			let num = $(this).parents('li').attr('data-num');
+			//let num = $(this).parents('li').attr('data-num');
+			let num = $(this).parents('li').data('data-num');
 			let target = $(this).parents('.comment_item');
 			
 			$.post('../comment/comment_delete.jsp', {'num' : num}, function(data){
