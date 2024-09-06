@@ -73,16 +73,16 @@ $(function () {
         success: function(data){
         	console.log(data);
                 $.each(data, function(index, item) {
-                    let row = `
-                        <tr>
-                            <td>${item.seq}</td>
-                            <td>${item.subject}</td>
-                            <td>${item.name}</td>
-                            <td>${item.logtime}</td>
-                            <td>${item.hit}</td>
-                        </tr>
-                    `;
-                    $('tbody').append(row);
+                	console.log(data);
+                	var row = 
+                	    '<tr>' +
+                	        '<td>' + item.seq + '</td>' +
+                	        '<td>' + item.subject + '</td>' +
+                	        '<td>' + item.name + '</td>' +
+                	        '<td>' + item.logtime + '</td>' +
+                	        '<td>' + item.hit + '</td>' +
+                	    '</tr>';
+                	document.querySelector('tbody').insertAdjacentHTML('beforeend', row);
                 });
         },
         error: function(e){
