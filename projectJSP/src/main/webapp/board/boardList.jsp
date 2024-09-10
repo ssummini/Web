@@ -7,8 +7,15 @@
 <%@page import="java.text.SimpleDateFormat"%>
 
 <%
+	int pg = Integer.parseInt(request.getParameter("pg"));
+
+	//1페이지당 5개씩
+	int endNum = pg * 5;
+	int startNum = endNum - 4;
+
     BoardDAO boardDAO = BoardDAO.getInstance();
-    List<BoardDTO> list = boardDAO.boardList();
+    List<BoardDTO> list = boardDAO.boardList(startNum, endNum);
+    
     // JSON 배열 생성
     JSONArray jsonArray = new JSONArray();
     
@@ -36,3 +43,4 @@
 %>
 
 <%= json %>
+

@@ -7,6 +7,7 @@
 <title>메인화면</title>
 <style type="text/css">
 body {
+	background-color: #FFE2FA;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -50,7 +51,7 @@ h2 {
         <h3><a href="./member/memberUpdateForm.jsp">회원정보수정</a></h3>
         <h3><a href="./board/boardWriteForm.jsp">글쓰기</a></h3>
     <% } %>
-        <h3><a href="./board/boardListForm.jsp">목록</a></h3>
+        <h3><a href="./board/boardList2.jsp?pg=1">목록</a></h3>
     </div>
 </body>
 </html>

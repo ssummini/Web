@@ -41,41 +41,22 @@ public class BoardDAO {
 	}
 	
 	public void boardWrite(BoardDTO boardDTO) {
-	    String sql = "insert into board values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
+	    String sql = "insert into board (seq, id, name, email, subject, content, ref) "
+	    		+ "values(seq_board.NEXTVAL,?,?,?,?,?,seq_board.CURRVAL)";
 
 	    try {
 	        con = ds.getConnection();
-	        
-	        // 시퀀스 값 가져오기
-	        String seqSql = "select seq_board.NEXTVAL from dual";
-	        pstmt = con.prepareStatement(seqSql);
-	        rs = pstmt.executeQuery();
-	        
-	        int seqValue = 0;
-	        if (rs.next()) {
-	            seqValue = rs.getInt(1);
-	        }
-
+	        	  
 	        // SQL 준비
 	        pstmt = con.prepareStatement(sql);
 
 	        // ? 데이터 매핑
-	        pstmt.setInt(1, seqValue);
-	        pstmt.setString(2, boardDTO.getId());
-	        pstmt.setString(3, boardDTO.getName());
-	        pstmt.setString(4, boardDTO.getEmail());
-	        pstmt.setString(5, boardDTO.getSubject());
-	        pstmt.setString(6, boardDTO.getContent());
-	        pstmt.setInt(7, seqValue);  // ref에 시퀀스 값 사용
-
-	        // lev, step, pseq 값이 0인 경우 기본값 0으로 설정
-	        pstmt.setInt(8, boardDTO.getLev() != 0 ? boardDTO.getLev() : 0);
-	        pstmt.setInt(9, boardDTO.getStep() != 0 ? boardDTO.getStep() : 0);
-	        pstmt.setInt(10, boardDTO.getPseq() != 0 ? boardDTO.getPseq() : 0);
-
-	        pstmt.setInt(11, boardDTO.getReply() != 0 ? boardDTO.getReply() : 0);
-	        pstmt.setInt(12, boardDTO.getHit() != 0 ? boardDTO.getHit() : 0);
-
+	        pstmt.setString(1, boardDTO.getId());
+	        pstmt.setString(2, boardDTO.getName());
+	        pstmt.setString(3, boardDTO.getEmail());
+	        pstmt.setString(4, boardDTO.getSubject());
+	        pstmt.setString(5, boardDTO.getContent());
+	        
 	        pstmt.executeUpdate();
 	    } catch (SQLException e) {
 	        e.printStackTrace();
@@ -89,27 +70,77 @@ public class BoardDAO {
 	    }
 	}
 	
-	public List<BoardDTO> boardList(){
-		List<BoardDTO> boardList = new ArrayList<>();
-		String sql = "select * from board order by seq desc";
+	public List<BoardDTO> boardList(int startNum, int endNum){
+		List<BoardDTO> list = new ArrayList<>();
+		String sql = """
+				select* from
+				(select rownum rn, tt.* from
+				(select * from board order by ref desc, step asc) tt)
+				where rn>=? and rn<=?
+				""";
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, endNum);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardDTO boardDTO = new BoardDTO();		
+				boardDTO.setSeq(rs.getInt("seq"));
+				boardDTO.setId(rs.getString("id"));
+				boardDTO.setName(rs.getString("name"));
+				boardDTO.setEmail(rs.getString("email"));
+				boardDTO.setSubject(rs.getString("subject"));
+				boardDTO.setContent(rs.getString("content"));
+				boardDTO.setRef(rs.getInt("ref"));
+				boardDTO.setLev(rs.getInt("lev"));
+				boardDTO.setStep(rs.getInt("step"));
+				boardDTO.setPseq(rs.getInt("pseq"));
+				boardDTO.setReply(rs.getInt("reply"));
+				boardDTO.setHit(rs.getInt("hit"));
+				boardDTO.setLogtime(rs.getDate("logtime")); 
+				
+				list.add(boardDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			list = null;
+		}finally {
+	        try {
+	        	if(rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	            if (con != null) con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		return list;
+	}
+	
+	public int getTotalA() {
+		int totalA = 0;
+		String sql = "select count(*) from board";
+		
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
-				BoardDTO boardDTO = new BoardDTO();				
-				boardDTO.setSeq(rs.getInt("seq"));
-				boardDTO.setSubject(rs.getString("subject"));
-				boardDTO.setName(rs.getString("name"));
-				boardDTO.setLogtime(rs.getDate("logtime")); 
-				boardDTO.setHit(rs.getInt("hit"));
-				boardList.add(boardDTO);
-			}
+			rs.next();
+			totalA = rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		return boardList;
+		}finally {	       
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	            if (con != null) con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		return totalA;
 	}
 }
 	

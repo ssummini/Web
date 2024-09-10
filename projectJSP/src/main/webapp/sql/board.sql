@@ -1,3 +1,4 @@
+-- [테이블] Oracle
 CREATE TABLE board(
  seq NUMBER NOT NULL, -- 글번호 (시퀀스 객체 이용)
  id VARCHAR2(20) NOT NULL, -- 아이디
@@ -5,6 +6,7 @@ CREATE TABLE board(
  email VARCHAR2(40), -- 이메일
  subject VARCHAR2(255) NOT NULL, -- 제목
  content VARCHAR2(4000) NOT NULL, -- 내용 
+ 
  ref NUMBER NOT NULL, -- 그룹번호
  lev NUMBER DEFAULT 0 NOT NULL, -- 단계
  step NUMBER DEFAULT 0 NOT NULL, -- 글순서
@@ -14,4 +16,6 @@ CREATE TABLE board(
  logtime DATE DEFAULT SYSDATE
 );
 
+
+-- [시퀀스]
 CREATE SEQUENCE seq_board NOCACHE NOCYCLE;

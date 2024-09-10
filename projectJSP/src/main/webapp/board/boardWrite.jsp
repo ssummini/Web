@@ -3,6 +3,9 @@
 <%@page import="board.bean.BoardDTO"%>
 <%@page import="board.dao.BoardDAO"%>
 <%
+
+	request.setCharacterEncoding("UTF-8");
+
 	String id = (String)session.getAttribute("memId");
 	String name = (String)session.getAttribute("memName");
 	String email = (String)session.getAttribute("memEmail");

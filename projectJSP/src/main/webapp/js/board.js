@@ -26,10 +26,9 @@ $(function () {
                 type: 'post',
                 url: '../board/boardWrite.jsp',
                 data: $('#boardWriteForm').serialize(),  
-                dataType: 'text',
-                success: function(data) {
+                success: function() {
                     alert('게시물 작성에 성공하였습니다!');
-                    window.location.href = "../index.jsp";  
+                    window.location.href = "../board/boardList2.jsp?pg=1";  
                 },
                 error: function(e) {
                     console.log(e);

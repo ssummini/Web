@@ -5,48 +5,70 @@
 <meta charset="UTF-8">
 <title>게시물 목록</title>
 <style type="text/css">
-    table {
-        border-collapse: collapse;
-        width: 800px;
-        margin: auto;
-    }
+body {
+    background-color: #FFE2FA;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    flex-direction: column;
+}
 
-    th, td {
-        padding: 10px;
-        border: 1px solid black;
-        text-align: center;
-    }
+table {
+    border-collapse: collapse;
+    border-radius: 10px;
+    background-color: white;
+    width: 800px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
 
-    th {
-        background-color: #F2F2F2;
-    }
+th, td {
+    padding: 10px;
+    border: 1px solid #CCC;
+    text-align: center;
+    font-size: 14px;
+}
 
-    a {
-        text-decoration: none;
-        color: black;
-    }
+th {
+    background-color: #F2F2F2;
+    color: #333;
+    font-size: 16px;
+}
 
-    a:hover {
-        text-decoration: underline;
-        color: blue;
-    }
+td {
+    color: #333;
+}
 
-    input[type="button"] {
-        background-color: #E0E0E0; 
-        border: 1px solid;
-        text-align: center; 
-        font-size: 14px; 
-        margin: 4px 2px; 
-        padding: 4px 5px;
-    }
+input[type="button"] {
+    background-color: #FF9ADB;
+    border: none;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+}
 
-    input[type="button"]:hover {
-        background-color: #BFBFBF;
-    }
+input[type="button"]:hover {
+    background-color: #FF70C0;
+}
+
+img {
+    margin-bottom: 20px;
+    cursor: pointer;
+    display: block;
+}
 </style>
 </head>
 <body>
-    <img src="../image/free-icon-love-4096198.png" alt="홈" width="60" height="60" onclick="location.href='../index.jsp'" style="cursor: pointer; display: block; margin: 20px auto;" />
+    <img src="../image/free-icon-love-4096198.png" alt="홈" width="60" height="60" onclick="location.href='../index.jsp'" />
     
     <table>
         <thead>
@@ -71,18 +93,18 @@ $(function () {
         url: '../board/boardList.jsp',
         dataType: 'json',
         success: function(data){
-        	console.log(data);
+           console.log(data);
                 $.each(data, function(index, item) {
-                	console.log(data);
-                	var row = 
-                	    '<tr>' +
-                	        '<td>' + item.seq + '</td>' +
-                	        '<td>' + item.subject + '</td>' +
-                	        '<td>' + item.name + '</td>' +
-                	        '<td>' + item.logtime + '</td>' +
-                	        '<td>' + item.hit + '</td>' +
-                	    '</tr>';
-                	document.querySelector('tbody').insertAdjacentHTML('beforeend', row);
+                   console.log(data);
+                   let row = 
+                       '<tr>' +
+                           '<td>' + item.seq + '</td>' +
+                           '<td>' + item.subject + '</td>' +
+                           '<td>' + item.name + '</td>' +
+                           '<td>' + item.logtime + '</td>' +
+                           '<td>' + item.hit + '</td>' +
+                       '</tr>';
+                   document.querySelector('tbody').insertAdjacentHTML('beforeend', row);
                 });
         },
         error: function(e){
