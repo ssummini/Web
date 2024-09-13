@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="board.bean.BoardDTO"%>
-<%@page import="board.bean.BoardPaging"%>
-<%@page import="board.dao.BoardDAO"%>
+<%@ page import="board.bean.BoardDTO"%>
+<%@ page import="board.bean.BoardPaging"%>
+<%@ page import="board.dao.BoardDAO"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%@ page import="java.util.List" %>
 <%
 	int pg = Integer.parseInt(request.getParameter("pg"));
@@ -117,7 +118,9 @@ img {
                      <td><%=boardDTO.getSeq() %></td>
                      <td><%=boardDTO.getSubject() %></td>
                      <td><%=boardDTO.getName() %></td>
-                     <td><%=boardDTO.getLogtime() %></td>
+                     <td>
+                     	<%=new SimpleDateFormat("yyyy.MM.dd").format(boardDTO.getLogtime()) %>
+                     </td>
                      <td><%=boardDTO.getHit() %></td>
                  </tr>
                  <%} %>

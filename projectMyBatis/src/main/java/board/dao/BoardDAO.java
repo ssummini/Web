@@ -2,20 +2,9 @@ package board.dao;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -38,8 +27,6 @@ public class BoardDAO {
 			Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 			
-			//InputStream inputStream = Resources.getResourceAsStream("mybatis-config.xml");
-			//sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

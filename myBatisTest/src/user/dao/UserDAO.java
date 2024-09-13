@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import org.apache.ibatis.io.Resources;
@@ -75,23 +76,9 @@ public class UserDAO {
 		return su;
 	}
 
-	public List<UserDTO> search(int num) {
+	public List<UserDTO> search(Map<String, String> map) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(); //생성
-		Scanner scan = new Scanner(System.in);
-		String name = null;
-		String id = null;
-		if(num == 1) {
-			System.out.print("검색을 원하는 이름 입력 : ");
-			name = scan.next();
-		}else if(num == 2) {
-			System.out.print("검색을 원하는 아이디 입력 : ");
-			id = scan.next();
-		}
-		
-		UserDTO userDTO = new UserDTO();
-		userDTO.setName(name);
-		userDTO.setId(id);
-		List<UserDTO> list = sqlSession.selectList("userSQL.search", userDTO);
+		List<UserDTO> list = sqlSession.selectList("userSQL.search", map);
 		sqlSession.close();
 		return list;
 	}
